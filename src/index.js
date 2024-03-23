@@ -14,3 +14,18 @@ exports.isUUID = function (input, version = 4) {
         throw new Error(error.INVALID_UUID_VERSION);
     return new RegExp(uuidVerRegexMap[version], "i").test(input);
 };
+
+exports.isObjectId = function (input) {
+    if (arguments.length === 0) throw new Error(error.NO_INPUT_VALUE);
+
+    const objectIdRegex = "^[0-9A-F]{24}$";
+
+    if (typeof input === "string") {
+        return new RegExp(objectIdRegex, "i").test(input);
+    } else if (typeof input === "object") {
+        // Try to invoke toString method (since most implementations wrap objectId inside object wrappers)
+        return new RegExp(objectIdRegex, "i").test(input.toString());
+    } else {
+        return false;
+    }
+};
