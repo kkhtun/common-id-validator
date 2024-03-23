@@ -43,6 +43,10 @@ isTypeId("user_2x4y6z8a0b1c2d3e4f5g6h7j8k"); // true
 isTypeId("user2x4y6z8a0b1c2d3e4f5g6h7j8k"); // false
 ```
 
+## GitHub
+
+https://github.com/kkhtun/common-id-validator
+
 ## License
 
 [MIT](https://github.com/kkhtun/common-id-validator/blob/main/LICENSE)
