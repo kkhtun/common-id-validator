@@ -1,0 +1,14 @@
+{
+    "name": "common-id-validator",
+    "version": "1.0.0",
+    "description": "A package to validate commonly used resource identifiers in databases",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest ./spec"
+    },
+    "author": "Kevin (khaingkhanthtun@gmail.com)",
+    "license": "ISC",
+    "devDependencies": {
+        "jest": "^29.7.0"
+    }
+}
