@@ -29,3 +29,12 @@ exports.isObjectId = function (input) {
         return false;
     }
 };
+
+exports.isTypeId = function (input) {
+    if (arguments.length === 0) throw new Error(error.NO_INPUT_VALUE);
+    if (typeof input !== "string") return false;
+
+    const typeIdRegex = "^[a-z]{0,63}_[0-7]{1}[0-9abcdefghjkmnpqrstvwxyz]{25}$";
+    // Can do further validation by making sure the suffix decodes to UUID v7
+    return new RegExp(typeIdRegex, "i").test(input);
+};
