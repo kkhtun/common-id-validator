@@ -7,7 +7,12 @@
         "test": "jest ./spec"
     },
     "author": "Kevin (khaingkhanthtun@gmail.com)",
-    "license": "ISC",
+    "license": "MIT",
+    "keywords": [
+        "validator",
+        "identifier",
+        "resource"
+    ],
     "devDependencies": {
         "jest": "^29.7.0"
     }
