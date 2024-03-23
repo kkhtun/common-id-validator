@@ -9,6 +9,7 @@ const uuidVerRegexMap = {
 };
 
 exports.isUUID = function (input, version = 4) {
+    if (arguments.length === 0) throw new Error(error.NO_INPUT_VALUE);
     if (![1, 2, 3, 4, 5].includes(version))
         throw new Error(error.INVALID_UUID_VERSION);
     return new RegExp(uuidVerRegexMap[version], "i").test(input);
