@@ -2,7 +2,7 @@
     "name": "common-id-validator",
     "version": "1.0.0",
     "description": "A package to validate commonly used resource identifiers in databases",
-    "main": "index.js",
+    "main": "src/index.js",
     "scripts": {
         "test": "jest ./spec"
     },
