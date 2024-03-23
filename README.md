@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A package to validate commonly used resource identifiers in databases
+A light-weight low-dependency package to syntactically validate commonly used resource identifiers in databases and other systems.
 
 ## Installation
 
