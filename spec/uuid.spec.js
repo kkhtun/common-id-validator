@@ -4,6 +4,7 @@ const { error } = require("../src/constants/error.constants");
 describe("isUUID()", () => {
     test("Should throw a custom error message if no input value is provided", () => {
         expect(() => isUUID()).toThrow(error.NO_INPUT_VALUE);
+        expect(() => isUUID(undefined)).not.toThrow(error.NO_INPUT_VALUE);
     });
     test("Should throw a custom error message if version is invalid", () => {
         const input = "21b7a7a8-cec5-4b67-9a55-74f800326045";
