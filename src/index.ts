@@ -39,3 +39,15 @@ export function isTypeId(input: string): boolean {
     // Can do further validation by making sure the suffix decodes to UUID v7
     return new RegExp(typeIdRegex, "i").test(input);
 }
+
+export function isMacAddress(input: string): boolean {
+    if (arguments.length === 0) throw new Error(error.NO_INPUT_VALUE);
+    if (typeof input !== "string") return false;
+
+    const macAddressRegex: string =
+        "^(([0-9A-F]{2}[:-]){5}([0-9A-F]{2})|([0-9A-F]{4}.[0-9A-F]{4}.[0-9A-F]{4})|[0-9A-F]{12})$";
+    return (
+        new RegExp(macAddressRegex, "i").test(input) &&
+        !(input.indexOf("-") !== -1 && input.indexOf(":") !== -1) // Should not contain both - and : as separators
+    );
+}

@@ -43,6 +43,19 @@ isTypeId("user_2x4y6z8a0b1c2d3e4f5g6h7j8k"); // true
 isTypeId("user2x4y6z8a0b1c2d3e4f5g6h7j8k"); // false
 ```
 
+### Example 4. Checking MAC addresses
+
+```js
+const { isMacAddress } = require("common-id-validator");
+
+isMacAddress("BC-50-D5-2C-5D-AC"); // true
+isMacAddress("60:C1:9A:AE:A8:71"); // true
+isMacAddress("3542.D272.908E"); // true
+
+isMacAddress("BC-50-D5-2C-5D-AC-2C"); // false
+isMacAddress("60:C1:9A-AE:A8:71"); // false
+```
+
 ## GitHub
 
 https://github.com/kkhtun/common-id-validator
