@@ -1,6 +1,6 @@
 {
     "name": "common-id-validator",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "description": "A package to validate commonly used resource identifiers in databases",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
