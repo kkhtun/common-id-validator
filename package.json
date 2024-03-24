@@ -2,8 +2,15 @@
     "name": "common-id-validator",
     "version": "1.0.2",
     "description": "A package to validate commonly used resource identifiers in databases",
-    "main": "src/index.js",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
     "scripts": {
+        "start": "npx ts-node src/index",
+        "build": "tsup",
         "test": "jest ./spec"
     },
     "author": "Kevin (khaingkhanthtun@gmail.com)",
@@ -11,10 +18,18 @@
     "keywords": [
         "validator",
         "identifier",
-        "resource"
+        "resource",
+        "objectid",
+        "uuid",
+        "typeid"
     ],
     "devDependencies": {
+        "@types/jest": "^29.5.12",
         "bson": "^6.5.0",
-        "jest": "^29.7.0"
+        "jest": "^29.7.0",
+        "ts-jest": "^29.1.2",
+        "ts-node": "^10.9.2",
+        "tsup": "^8.0.2",
+        "typescript": "^5.4.3"
     }
 }

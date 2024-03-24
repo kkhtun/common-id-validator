@@ -1,6 +1,6 @@
-const { error } = require("./constants/error.constants");
+import { error } from "./constants/error.constants";
 
-const uuidVerRegexMap = {
+const uuidVerRegexMap: { [key: string]: string } = {
     1: "^[0-9A-F]{8}-[0-9A-F]{4}-[1][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$",
     2: "^[0-9A-F]{8}-[0-9A-F]{4}-[2][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$",
     3: "^[0-9A-F]{8}-[0-9A-F]{4}-[3][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$",
@@ -8,17 +8,17 @@ const uuidVerRegexMap = {
     5: "^[0-9A-F]{8}-[0-9A-F]{4}-[5][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$",
 };
 
-exports.isUUID = function (input, version = 4) {
+export function isUUID(input: string, version: number = 4): boolean {
     if (arguments.length === 0) throw new Error(error.NO_INPUT_VALUE);
     if (![1, 2, 3, 4, 5].includes(version))
         throw new Error(error.INVALID_UUID_VERSION);
     return new RegExp(uuidVerRegexMap[version], "i").test(input);
-};
+}
 
-exports.isObjectId = function (input) {
+export function isObjectId(input: string | object): boolean {
     if (arguments.length === 0) throw new Error(error.NO_INPUT_VALUE);
 
-    const objectIdRegex = "^[0-9A-F]{24}$";
+    const objectIdRegex: string = "^[0-9A-F]{24}$";
 
     if (typeof input === "string") {
         return new RegExp(objectIdRegex, "i").test(input);
@@ -28,13 +28,14 @@ exports.isObjectId = function (input) {
     } else {
         return false;
     }
-};
+}
 
-exports.isTypeId = function (input) {
+export function isTypeId(input: string): boolean {
     if (arguments.length === 0) throw new Error(error.NO_INPUT_VALUE);
     if (typeof input !== "string") return false;
 
-    const typeIdRegex = "^[a-z]{0,63}_[0-7]{1}[0-9abcdefghjkmnpqrstvwxyz]{25}$";
+    const typeIdRegex: string =
+        "^[a-z]{0,63}_[0-7]{1}[0-9abcdefghjkmnpqrstvwxyz]{25}$";
     // Can do further validation by making sure the suffix decodes to UUID v7
     return new RegExp(typeIdRegex, "i").test(input);
-};
+}
