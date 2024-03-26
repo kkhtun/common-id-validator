@@ -21,7 +21,9 @@
         "resource",
         "objectid",
         "uuid",
-        "typeid"
+        "typeid",
+        "mac",
+        "snowflake"
     ],
     "devDependencies": {
         "@types/jest": "^29.5.12",

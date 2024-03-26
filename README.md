@@ -56,6 +56,20 @@ isMacAddress("BC-50-D5-2C-5D-AC-2C"); // false
 isMacAddress("60:C1:9A-AE:A8:71"); // false
 ```
 
+### Example 5. Checking Snowflake ID (Twitter variant)
+
+Snowflake ID should be either BigInt or String to be represented properly as unsigned 64-bit integers. Any other data type including Number will return false.
+
+```js
+const { isTwitterSnowflakeId } = require("common-id-validator");
+
+isTwitterSnowflakeId(BigInt("1771647565570244608")); // true
+isTwitterSnowflakeId("7178357033781956611"); // true
+
+isTwitterSnowflakeId("717835703378A956611"); // false
+isTwitterSnowflakeId(1771647565570244608); // false
+```
+
 ## GitHub
 
 https://github.com/kkhtun/common-id-validator
