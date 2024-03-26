@@ -36,7 +36,7 @@ export function isTypeId(input: string): boolean {
 
     const typeIdRegex: string =
         "^[a-z]{0,63}_[0-7]{1}[0-9abcdefghjkmnpqrstvwxyz]{25}$";
-    // Can do further validation by making sure the suffix decodes to UUID v7
+    // TODO: Can do further validation by making sure the suffix decodes to UUID v7
     return new RegExp(typeIdRegex, "i").test(input);
 }
 
@@ -50,4 +50,24 @@ export function isMacAddress(input: string): boolean {
         new RegExp(macAddressRegex, "i").test(input) &&
         !(input.indexOf("-") !== -1 && input.indexOf(":") !== -1) // Should not contain both - and : as separators
     );
+}
+
+// TODO: Should implementa global func to consolidate other snowflake variants (e.g Discord)
+export function isTwitterSnowflakeId(input: string | bigint): boolean {
+    if (arguments.length === 0) throw new Error(error.NO_INPUT_VALUE);
+    if (!["string", "bigint"].includes(typeof input)) return false;
+
+    let bigIntId: bigint;
+    if (typeof input === "string") {
+        // Should contain digits only
+        if (!new RegExp("^[0-9]+$", "i").test(input)) return false;
+        bigIntId = BigInt(input);
+    } else {
+        bigIntId = input;
+    }
+
+    // SnowflakeId should fit inside SINT64_MAX
+    const SINT64_MAX = BigInt("0x7FFFFFFFFFFFFFFF"); // Largest signed (highest bit always 0) 64-bit integer
+    if (bigIntId > SINT64_MAX) return false;
+    return true;
 }
