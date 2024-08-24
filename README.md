@@ -70,6 +70,23 @@ isTwitterSnowflakeId("717835703378A956611"); // false
 isTwitterSnowflakeId(1771647565570244608); // false
 ```
 
+### Example 6. Checking IMEI
+
+IMEI should be provided as either a string or a number in these accepted formats. IMEISV is not accepted currently.
+
+-   AA-BBBBBB-CCCCCC-D
+-   AABBBBBBCCCCCCD
+
+```js
+const { isIMEI } = require("common-id-validator");
+
+isIMEI(356303483752836); // true
+isIMEI("35-630348-375283-6"); // true
+
+isIMEI("35-630-348-375283-6"); // false
+isIMEI("35-630348-375283-7"); // incorrect check digit - false
+```
+
 ## GitHub
 
 https://github.com/kkhtun/common-id-validator
