@@ -71,3 +71,54 @@ export function isTwitterSnowflakeId(input: string | bigint): boolean {
     if (bigIntId > SINT64_MAX) return false;
     return true;
 }
+
+// Luhn's algorithm helper
+function produceLuhnCheckDigit(input: string): number {
+    const digitArray = input.split("").map((n) => parseInt(n));
+    for (let i = digitArray.length - 1; i >= 0; i = i - 2) {
+        digitArray[i] = digitArray[i] * 2;
+        if (digitArray[i] >= 10) {
+            digitArray[i] =
+                Math.floor(digitArray[i] / 10) + (digitArray[i] % 10);
+        }
+    }
+    const sum = digitArray.reduce((a, b) => a + b, 0);
+    return 10 - (sum % 10);
+}
+
+// Currently checks format and check digit
+// Software version IMEIs are rejected currently
+// TODO: Consider validating IMEI components for better accuracy e.g. TAC
+export function isIMEI(input: string | number): boolean {
+    if (arguments.length === 0) throw new Error(error.NO_INPUT_VALUE);
+
+    if (typeof input === "number" || typeof input === "string") {
+        input = input.toString();
+        if (input.includes("-")) {
+            // Expected format XX-XXXXXX-XXXXXX-X
+            if (input.length !== 18) return false;
+
+            // Hyphens "-" need to be at these exact positions
+            if (
+                input.charAt(2) !== "-" ||
+                input.charAt(9) !== "-" ||
+                input.charAt(16) !== "-"
+            )
+                return false;
+
+            input = input.replace(new RegExp("-", "g"), "");
+        }
+
+        if (input.length !== 15) return false;
+
+        // Must be all digits
+        if (!new RegExp("^[0-9]+$", "i").test(input)) return false;
+
+        // Check digit
+        const template = input.substring(0, input.length - 1);
+        const correctCheckDigit = produceLuhnCheckDigit(template);
+
+        return correctCheckDigit.toString() === input.charAt(input.length - 1);
+    }
+    return false;
+}
