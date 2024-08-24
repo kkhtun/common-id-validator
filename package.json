@@ -23,7 +23,8 @@
         "uuid",
         "typeid",
         "mac",
-        "snowflake"
+        "snowflake",
+        "imei"
     ],
     "devDependencies": {
         "@types/jest": "^29.5.12",
