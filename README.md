@@ -91,6 +91,10 @@ isIMEI("35-630348-375283-7"); // incorrect check digit - false
 
 https://github.com/kkhtun/common-id-validator
 
+## NPM
+
+https://www.npmjs.com/package/common-id-validator
+
 ## License
 
 [MIT](https://github.com/kkhtun/common-id-validator/blob/main/LICENSE)
